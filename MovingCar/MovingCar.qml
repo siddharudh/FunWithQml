@@ -36,9 +36,9 @@ Window {
     Text {
         id: message
         color: "#aaa"
-        text: qsTr("Click and Drag the Car to move it")
+        text: qsTr("Click and Drag the Car or Press Arrow keys to move it")
         anchors.top: parent.top
-        font.pixelSize: 32
+        font.pixelSize: 24
         anchors.topMargin: 30
         anchors.horizontalCenter: parent.horizontalCenter
     }
@@ -51,6 +51,10 @@ Window {
         source: "assets/car-body.svg"
         anchors.bottomMargin: -224
         scale: 0.3
+        focus: true
+
+        Keys.onRightPressed: x += 100
+        Keys.onLeftPressed: x -= 100
 
         Image {
             id: front_wheel
@@ -69,7 +73,7 @@ Window {
         }
 
         Behavior on x {
-            NumberAnimation {
+            SmoothedAnimation {
                 duration: 500
             }
         }
